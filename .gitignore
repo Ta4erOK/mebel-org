@@ -1,0 +1,28 @@
+# материалы задания (не являются частью решения)
+/files/
+/*.pdf
+/*.docx
+/*.txt
+
+# Visual Studio
+.vs/
+.idea/
+*.user
+*.suo
+*.DotSettings.user
+
+# сборка
+[Bb]in/
+[Oo]bj/
+*.cache
+*.tlog
+packages/
+*.nupkg
+*.snupkg
+
+# временное
+*.log
+*.tmp
+Thumbs.db
+desktop.ini
+~$*
