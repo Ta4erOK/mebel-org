@@ -1,0 +1,90 @@
+<Window x:Class="MebelOrg.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Вход — ООО «МебельОрг»"
+        Height="600" Width="760"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{StaticResource BrushMain}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Дополнительный фон #00FFFF: логотип компании и название -->
+        <Border Grid.Row="0" Background="{StaticResource BrushSecondary}">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <!-- Логотип из ресурсов приложения, без искажения пропорций -->
+                <Image Source="Assets/icon.png"
+                       Width="104" Height="104"
+                       Stretch="Uniform"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+                <StackPanel Margin="22,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="ООО «МебельОрг»"
+                               FontSize="30"
+                               FontWeight="Bold" />
+                    <TextBlock Text="Информационная система магазина мебели"
+                               FontSize="14"
+                               Foreground="{StaticResource BrushAccent}"
+                               Margin="2,4,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Форма авторизации -->
+        <Border Grid.Row="1"
+                Background="#FFFFFF"
+                Width="430"
+                VerticalAlignment="Top"
+                Margin="0,34,0,0"
+                Padding="30,26"
+                BorderBrush="{StaticResource BrushCardBorder}"
+                BorderThickness="1.5"
+                CornerRadius="6">
+            <StackPanel Cursor="">
+                <TextBlock Text="Вход в систему"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="0,0,0,18" />
+
+                <TextBlock Text="Логин (электронная почта)" FontSize="12.5" Foreground="{StaticResource BrushMuted}" />
+                <TextBox x:Name="LoginBox" Margin="0,5,0,14" />
+
+                <TextBlock Text="Пароль" FontSize="12.5" Foreground="{StaticResource BrushMuted}" />
+                <PasswordBox x:Name="PasswordBox" Margin="0,5,0,8" />
+
+                <TextBlock x:Name="ErrorText"
+                           Text=""
+                           FontSize="12.5"
+                           Foreground="#C62828"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,8" />
+
+                <Button x:Name="LoginButton"
+                        Style="{StaticResource PrimaryButton}"
+                        Click="LoginClick"
+                        Margin="0,4,0,0">
+                    <!-- Явно переопределяем цвет текста внутри кнопки -->
+                        <TextBlock Text="Войти" Foreground="White"/>
+                </Button>
+
+
+
+                <Button x:Name="GuestButton"
+                        Content="Войти как гость"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="GuestClick"
+                        Margin="0,10,0,0" />
+
+                <TextBlock Text="Гостевой режим — просмотр каталога без входа в учётную запись."
+                           FontSize="11.5"
+                           Foreground="{StaticResource BrushMuted}"
+                           TextWrapping="Wrap"
+                           Margin="0,14,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

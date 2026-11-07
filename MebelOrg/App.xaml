@@ -3,21 +3,101 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
-        <!-- Руководство по стилю ООО «МебельОрг»: шрифт Calibri -->
+        <!-- Руководство по стилю ООО «МебельОрг»:
+             основной фон #FFFFFF, дополнительный фон #00FFFF, акцент #0000FF,
+             подсветка строки при скидке > 15% — #008080, шрифт Calibri -->
+        <SolidColorBrush x:Key="BrushMain" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="BrushSecondary" Color="#00FFFF" />
+        <SolidColorBrush x:Key="BrushAccent" Color="#0000FF" />
+        <SolidColorBrush x:Key="BrushDiscountRow" Color="#008080" />
+        <SolidColorBrush x:Key="BrushOutOfStock" Color="#DCDCDC" />
+        <SolidColorBrush x:Key="BrushText" Color="#001A33" />
+        <SolidColorBrush x:Key="BrushMuted" Color="#5A7A8A" />
+        <SolidColorBrush x:Key="BrushCardBorder" Color="#B7E6E6" />
+
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Calibri" />
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="Foreground" Value="{StaticResource BrushText}" />
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="8,6" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="{StaticResource BrushText}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BrushCardBorder}" />
+            <Setter Property="BorderThickness" Value="1.5" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style TargetType="PasswordBox">
             <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="8,6" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="{StaticResource BrushText}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BrushCardBorder}" />
+            <Setter Property="BorderThickness" Value="1.5" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="13.5" />
+            <Setter Property="Padding" Value="8,5" />
+        </Style>
+
+        <!-- Базовая кнопка: скруглённая рамка, подсветка при наведении -->
+        <Style x:Key="BaseButton" TargetType="Button">
+            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Padding" Value="18,9" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="{StaticResource BrushAccent}" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <!-- Здесь по умолчанию белый -->
+            <Setter Property="BorderBrush" Value="{StaticResource BrushAccent}" />
+            <Setter Property="BorderThickness" Value="1.5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Frame"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4"
+                                SnapsToDevicePixels="True">
+                            <!-- ИСПРАВЛЕНО: Добавлена привязка TextBlock.Foreground -->
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}"
+                                              TextBlock.Foreground="{TemplateBinding Foreground}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Frame" Property="Opacity" Value="0.85" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Frame" Property="Opacity" Value="0.7" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Frame" Property="Opacity" Value="0.45" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource BaseButton}" />
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="{StaticResource BrushAccent}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BrushAccent}" />
+        </Style>
+        <Style x:Key="SmallButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="12,6" />
         </Style>
     </Application.Resources>
 </Application>
