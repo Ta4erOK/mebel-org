@@ -97,7 +97,7 @@
                                FontSize="20"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
-                               Foreground="{Binding PrimaryBrush}" />
+                               Foreground="{Binding FinalPriceBrush}" />
 
                     <TextBlock Grid.Column="3"
                                Text="{Binding StockText}"

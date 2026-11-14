@@ -20,7 +20,7 @@ public class ProductCard
     private static readonly Brush BrushLightMuted = Frozen("#DFF6F6");
     private static readonly Brush BrushOutText = Frozen("#6E6E6E");
     private static readonly Brush BrushOldPrice = Frozen("#C62828");
-    private static readonly Brush BrushOldPriceOnDark = Frozen("#FFB4B4");
+    private static readonly Brush BrushOldPriceOnDark = Frozen("#FF6B6B");
 
     private static readonly Brush BgNormal = Frozen("#FFFFFF");
     private static readonly Brush BgDiscount = Frozen("#008080");
@@ -47,6 +47,7 @@ public class ProductCard
             PrimaryBrush = BrushOutText;
             SecondaryBrush = BrushOutText;
             OldPriceBrush = BrushOutText;
+            FinalPriceBrush = BrushOutText;
         }
         else if (isBigDiscount)
         {
@@ -54,6 +55,7 @@ public class ProductCard
             PrimaryBrush = BrushWhite;
             SecondaryBrush = BrushLightMuted;
             OldPriceBrush = BrushOldPriceOnDark;
+            FinalPriceBrush = BrushText;
         }
         else
         {
@@ -61,6 +63,7 @@ public class ProductCard
             PrimaryBrush = BrushText;
             SecondaryBrush = BrushMuted;
             OldPriceBrush = BrushOldPrice;
+            FinalPriceBrush = BrushText;
         }
 
         Title = product.Name;
@@ -118,6 +121,7 @@ public class ProductCard
     public Brush PrimaryBrush { get; }
     public Brush SecondaryBrush { get; }
     public Brush OldPriceBrush { get; }
+    public Brush FinalPriceBrush { get; }
 
     /// <summary>Текст для поиска: все текстовые атрибуты товара в нижнем регистре.</summary>
     public string SearchText { get; }
